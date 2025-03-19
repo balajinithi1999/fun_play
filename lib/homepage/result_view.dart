@@ -29,18 +29,18 @@ class _ResultViewState extends State<ResultView> {
                 Text(
                   widget.name,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 Text("You scored ${widget.score}"),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) {
-                          return HomepageView();
+                          return const HomepageView();
                         },
                       ));
                     },

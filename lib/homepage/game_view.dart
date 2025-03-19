@@ -54,7 +54,7 @@ class _GameViewState extends State<GameView> {
                   onChanged: (value) {
                     answer = value;
                   },
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: "Enter your answer",
                   ),
                 ),
@@ -86,7 +86,7 @@ class _GameViewState extends State<GameView> {
                       ctl.clear();
                     });
                   },
-                  child: Text("Next"),
+                  child: const Text("Next"),
                 ),
               ],
             ),
