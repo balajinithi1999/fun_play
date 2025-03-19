@@ -77,10 +77,9 @@ class _GameViewState extends State<GameView> {
                     height: 300,
                   ),
                 if (!isTimerRunning)
-                  const Icon(
-                    Icons.question_mark_rounded,
-                    size: 300,
-                    color: Colors.white,
+                  Image.asset(
+                    "assets/question.gif",
+                    height: 300,
                   ),
                 if (isTimerRunning) ...[
                   const SizedBox(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fun_play/homepage/homepage_view.dart';
+import 'package:fun_play/utils.dart';
 
 class ResultView extends StatefulWidget {
   final String name;
@@ -18,6 +19,16 @@ class _ResultViewState extends State<ResultView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Utils.secondaryColor,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: Utils.primaryColor,
+        title: Text(
+          "Thanks ${widget.name}!",
+          style: Utils.textStyle,
+        ),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -26,17 +37,25 @@ class _ResultViewState extends State<ResultView> {
             ),
             child: Column(
               children: [
+                Image.asset(
+                  "assets/thanks.gif",
+                  height: 300,
+                ),
                 Text(
-                  widget.name,
+                  "You scored : ${widget.score} points",
+                  style: Utils.textStyle.copyWith(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Text("You scored ${widget.score}"),
                 const SizedBox(
                   height: 16,
                 ),
                 ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      textStyle: Utils.textStyle,
+                      backgroundColor: Utils.primaryColor,
+                    ),
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) {
@@ -44,8 +63,9 @@ class _ResultViewState extends State<ResultView> {
                         },
                       ));
                     },
-                    child: const Text(
+                    child: Text(
                       "Go Home",
+                      style: Utils.textStyle,
                     )),
               ],
             ),
