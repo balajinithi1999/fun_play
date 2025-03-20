@@ -18,56 +18,59 @@ class ResultView extends StatefulWidget {
 class _ResultViewState extends State<ResultView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Utils.secondaryColor,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Utils.primaryColor,
-        title: Text(
-          "Thanks ${widget.name}!",
-          style: Utils.textStyle,
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        backgroundColor: Utils.secondaryColor,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Utils.primaryColor,
+          title: Text(
+            "Thanks ${widget.name}!",
+            style: Utils.textStyle,
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16.0,
-            ),
-            child: Column(
-              children: [
-                Image.asset(
-                  "assets/thanks.gif",
-                  height: 300,
-                ),
-                Text(
-                  "You scored : ${widget.score} points",
-                  style: Utils.textStyle.copyWith(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
+        body: SafeArea(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+              ),
+              child: Column(
+                children: [
+                  Image.asset(
+                    "assets/thanks.gif",
+                    height: 300,
                   ),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      textStyle: Utils.textStyle,
-                      backgroundColor: Utils.primaryColor,
+                  Text(
+                    "You scored : ${widget.score} points",
+                    style: Utils.textStyle.copyWith(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
                     ),
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) {
-                          return const HomepageView();
-                        },
-                      ));
-                    },
-                    child: Text(
-                      "Go Home",
-                      style: Utils.textStyle,
-                    )),
-              ],
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        textStyle: Utils.textStyle,
+                        backgroundColor: Utils.primaryColor,
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) {
+                            return const HomepageView();
+                          },
+                        ));
+                      },
+                      child: Text(
+                        "Go Home",
+                        style: Utils.textStyle,
+                      )),
+                ],
+              ),
             ),
           ),
         ),

@@ -49,117 +49,120 @@ class _GameViewState extends State<GameView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Utils.secondaryColor,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Utils.primaryColor,
-        title: Text(
-          "Level ${index + 1}",
-          style: Utils.textStyle,
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        backgroundColor: Utils.secondaryColor,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Utils.primaryColor,
+          title: Text(
+            "Level ${index + 1}",
+            style: Utils.textStyle,
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16.0,
-            ),
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 16,
-                ),
-                if (isTimerRunning)
-                  Image.asset(
-                    data[index].imagePath,
-                    height: 300,
-                  ),
-                if (!isTimerRunning)
-                  Image.asset(
-                    "assets/question.gif",
-                    height: 300,
-                  ),
-                if (isTimerRunning) ...[
+        body: SafeArea(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+              ),
+              child: Column(
+                children: [
                   const SizedBox(
-                    height: 32,
+                    height: 16,
                   ),
-                  Text(
-                    "Time Remaining : ${timerMaxSeconds}s",
-                    style: Utils.textStyle.copyWith(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
+                  if (isTimerRunning)
+                    Image.asset(
+                      data[index].imagePath,
+                      height: 300,
                     ),
-                  ),
-                ],
-                if (!isTimerRunning) ...[
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Text(
-                    data[index].queAndAnsList[0].question,
-                    style: Utils.textStyle,
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  TextField(
-                    style: Utils.textStyle,
-                    controller: ctl,
-                    onChanged: (value) {
-                      answer = value;
-                    },
-                    decoration: InputDecoration(
-                      hintText: "Enter your answer",
-                      hintStyle: Utils.textStyle,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(
-                          40,
+                  if (!isTimerRunning)
+                    Image.asset(
+                      "assets/question.gif",
+                      height: 300,
+                    ),
+                  if (isTimerRunning) ...[
+                    const SizedBox(
+                      height: 32,
+                    ),
+                    Text(
+                      "Time Remaining : ${timerMaxSeconds}s",
+                      style: Utils.textStyle.copyWith(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                  if (!isTimerRunning) ...[
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    Text(
+                      data[index].queAndAnsList[0].question,
+                      style: Utils.textStyle,
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    TextField(
+                      style: Utils.textStyle,
+                      controller: ctl,
+                      onChanged: (value) {
+                        answer = value;
+                      },
+                      decoration: InputDecoration(
+                        hintText: "Enter your answer",
+                        hintStyle: Utils.textStyle,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(
+                            40,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (index == data.length - 1) {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) {
-                            return ResultView(
-                              score: score,
-                              name: widget.name,
-                            );
-                          },
-                        ));
-                        return;
-                      }
-                      if (data[index]
-                          .queAndAnsList[0]
-                          .answer
-                          .contains(answer.trim())) {
-                        score = score + 1;
-                      }
-                      setState(() {
-                        index = index + 1;
-                        answer = "";
-                        ctl.clear();
-                        callTimer();
-                      });
-                    },
-                    style: ElevatedButton.styleFrom(
-                      textStyle: Utils.textStyle,
-                      backgroundColor: Utils.primaryColor,
+                    const SizedBox(
+                      height: 16,
                     ),
-                    child: Text(
-                      "Next",
-                      style: Utils.textStyle,
+                    ElevatedButton(
+                      onPressed: () {
+                        if (index == data.length - 1) {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) {
+                              return ResultView(
+                                score: score,
+                                name: widget.name,
+                              );
+                            },
+                          ));
+                          return;
+                        }
+                        if (data[index]
+                            .queAndAnsList[0]
+                            .answer
+                            .contains(answer.trim())) {
+                          score = score + 1;
+                        }
+                        setState(() {
+                          index = index + 1;
+                          answer = "";
+                          ctl.clear();
+                          callTimer();
+                        });
+                      },
+                      style: ElevatedButton.styleFrom(
+                        textStyle: Utils.textStyle,
+                        backgroundColor: Utils.primaryColor,
+                      ),
+                      child: Text(
+                        "Next",
+                        style: Utils.textStyle,
+                      ),
                     ),
-                  ),
+                  ],
                 ],
-              ],
+              ),
             ),
           ),
         ),

@@ -145,12 +145,12 @@ class DataRepository {
 }
 
 List<String> rules = [
-  "1.There are 10 levels in this game",
-  "2.Each level consists of one image",
-  "3.Player is given maximum 30 seconds to watch the contents of image",
-  "4.After 30 seconds,image will be hidden",
-  "5.Based on content of the image, the question will be framed",
-  "6.Question related to the image will be shown",
-  "7.The player has to submit the answer to move to the next level",
-  "8.Each correct answer carries one point,those who secures more than eight points has good IQ"
+  "1.There are 10 levels in this game.",
+  "2.Each level consists of one image.",
+  "3.Player is given maximum 30 seconds to watch the contents of image.",
+  "4.After 30 seconds,image will be hidden.",
+  "5.Based on content of the image, the question will be framed.",
+  "6.Question related to the image will be shown.",
+  "7.The player has to submit the answer to move to the next level.",
+  "8.Each correct answer carries one point,those who secures more than eight points has good IQ."
 ];
